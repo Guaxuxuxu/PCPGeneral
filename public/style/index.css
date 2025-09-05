@@ -16,7 +16,6 @@ body {
   background: #191E48;
   color: #F6F6F3;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
 }
@@ -25,6 +24,15 @@ body {
   font-size: 1.3rem;
   font-weight: bold;
   color: #ffffff;
+  flex: 1 1 0;
+  text-align: left;
+}
+
+.nav {
+  flex: 2 1 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav a {
@@ -36,10 +44,11 @@ body {
 }
 
 .nav a:hover {
-  color: #4E3D8A;
+  color: #a592e9;
+  
 }
 
-.btn {
+.btn-link {
   background: #4E3D8A;
   color: #F6F6F3;
   padding: 10px 20px;
@@ -48,8 +57,15 @@ body {
   font-weight: bold;
 }
 
-.btn:hover {
+.btn {
+  flex: 1 1 0; /* Ocupa o mesmo espaço da logo */
+  margin-left: 0;
+  text-align: right;
+}
+
+.btn-link:hover {
   background: #2F2863;
+  color: #FFFFFF;
 }
 
 /* ========================= Hero ========================= */
@@ -85,7 +101,7 @@ body {
 }
 
 .hero-content h1 span {
-  color: #4E3D8A;
+  color: rgb(200, 255, 255);
 }
 
 .hero-content p {
@@ -151,11 +167,54 @@ body {
 }
 
 /* ========================= Carousel ========================= */
-.carousel-inner img {
+#projectsCarousel .carousel-inner img {
   height: 300px;
   width: 100%;
   object-fit: cover;
+  object-position: center;
   border-radius: 10px;
+}
+
+#projectsCarousel .carousel-inner img:hover {
+  filter: grayscale(50%);
+}
+
+.fullscreen-carousel {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #191e48b2;
+  z-index: 9999;
+}
+.fullscreen-carousel.active {
+  display: block;
+}
+.fullscreen-carousel .carousel,
+.fullscreen-carousel .carousel-inner,
+.fullscreen-carousel .carousel-item,
+.fullscreen-carousel img {
+  width: 100vw;
+  height: 100vh;
+}
+.fullscreen-carousel img {
+  object-fit: contain;
+}
+.fullscreen-carousel .close-fullscreen {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  z-index: 10000;
+  cursor: pointer;
+}
+
+.fullscreen-carousel .close-fullscreen:hover {
+  opacity: 0.7;
 }
 
 /* ========================= Sections ========================= */
@@ -200,16 +259,12 @@ body {
 /* ========================= Footer / Contact ========================= */
 .contact-privacy {
   background: #F6F6F3;
-  padding: 50px 20px;
 }
 
 .contact-privacy .container {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 40px;
 }
 
 .contact-privacy .logo-footer img {
@@ -234,8 +289,8 @@ body {
 }
 
 .minimap iframe {
-  width: 100%;
-  height: 200px;
+  width: 40vw;
+  height: 300px;
   border: none;
   border-radius: 8px;
 }
