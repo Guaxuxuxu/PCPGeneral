@@ -11,6 +11,7 @@
 *.swp
 *.bak
 *~
+*.db
 
 node_modules/
 dist/

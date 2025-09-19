@@ -7,6 +7,9 @@ import nodemailer from 'nodemailer';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -65,25 +68,25 @@ app.post('/send', async (req, res) => {
     const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'guilherme.nasc.sac@gmail.com',
-                pass: 'viav skoj ujcq vruo'
+                user: process.env.USER,
+                pass: process.env.GOOGLE_PASS
                 }
     });
 
     const mailOptions = {
       from: 'email que enviará as infos',
-      to: 'guilherme.isac@estudante.iftm.edu.br', //TODO: aqui tá enviando para o usuário, mas pode ser um email padrão. 
+      to: process.env.DEFAULT_EMAIL,
       subject: 'Planilha com dados do formulário',
       text: 'Segue em anexo o Excel com os dados enviados pelo formulário.',
       attachments: [
-        { path: filepath, filename: 'dados.xlsx' }
+        { path: process.env.XLSX_FILE_PATH, filename: process.env.XLSX_FILENAME }
       ]
     };
 
     await transporter.sendMail(mailOptions);
 
     // Remover Excel temporário
-    fs.unlinkSync(filepath);
+    fs.unlinkSync(process.env.XLSX_FILE_PATH);
 
     res.send('Email enviado com sucesso com todos os agendamentos!');
   } catch (err) {
