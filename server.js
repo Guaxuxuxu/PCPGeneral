@@ -45,6 +45,7 @@ await initDb();
 app.post('/send', async (req, res) => {
   try {
     const { name, email, phone, service, schedule } = req.body;
+    console.log(req.body);
     const db = await dbPromise;
 
     // Salvar no banco
