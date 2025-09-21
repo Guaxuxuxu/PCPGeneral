@@ -1,8 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
+    // Máscara de telefone dos EUA
+    const phoneInput = form.phone;
+    phoneInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+        if (value.length > 10) value = value.slice(0, 10);
+        let formatted = '';
+        if (value.length > 0) {
+            formatted = '(' + value.substring(0, 3);
+        }
+        if (value.length >= 4) {
+            formatted += ') ' + value.substring(3, 6);
+        }
+        if (value.length >= 7) {
+            formatted += '-' + value.substring(6, 10);
+        }
+        e.target.value = formatted;
+    });
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault(); // Evita que a página recarregue
+
+        // Validação do campo nome: apenas letras e espaços
+        const nameValue = form.name.value.trim();
+        if (!/^[A-Za-zÀ-ÿ\s]+$/.test(nameValue)) {
+            showToast('Name must contain only letters and spaces.', false);
+            return;
+        }
+
+        // Validação do campo data: maior ou igual a hoje
+        const dateValue = form.schedule.value;
+        if (dateValue) {
+            const selectedDate = new Date(dateValue);
+            const today = new Date();
+            today.setHours(0,0,0,0); // Zera horas para comparar só data
+            if (selectedDate < today) {
+                showToast('Date must be today or later.', false);
+                return;
+            }
+        }
 
         // Exibe loader
         const loader = document.getElementById('formLoader');
@@ -10,11 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Coleta os dados do formulário
         const formData = {
-            name: form.name.value,
+            name: nameValue,
             email: form.email.value,
             phone: form.phone.value,
             service: form.service.value,
-            schedule: form.schedule.value
+            schedule: dateValue
         };
 
         try {
