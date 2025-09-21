@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedDate = new Date(dateValue);
             const today = new Date();
             today.setHours(0,0,0,0); // Zera horas para comparar só data
-            if (selectedDate < today) {
-                showToast('Date must be today or later.', false);
+            if (selectedDate <= today) {
+                showToast('Date must be greater than today.', false);
                 return;
             }
         }
