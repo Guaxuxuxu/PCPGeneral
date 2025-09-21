@@ -89,10 +89,10 @@ app.post('/send', async (req, res) => {
     // Remover Excel temporário
     fs.unlinkSync(process.env.XLSX_FILE_PATH);
 
-    res.send('Email enviado com sucesso com todos os agendamentos!');
+  res.json({ success: true, message: 'Email sent successfully with all appointments!' });
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erro ao enviar email: ' + err.message);
+  res.status(500).json({ success: false, message: 'Error sending email: ' + err.message });
   }
 });
 

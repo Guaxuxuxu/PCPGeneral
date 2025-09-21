@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault(); // Evita que a página recarregue
 
+        // Exibe loader
+        const loader = document.getElementById('formLoader');
+        loader.style.display = 'block';
+
         // Coleta os dados do formulário
         const formData = {
             name: form.name.value,
@@ -20,13 +24,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(formData)
             });
 
-            const result = await response.text();
-            alert(result); // mostra a mensagem de sucesso ou erro
-            form.reset(); // limpa o formulário
+            const result = await response.json();
+            loader.style.display = 'none'; // Esconde loader
+            showToast(result.message, result.success);
+            if(result.success) form.reset(); // limpa o formulário só se sucesso
         } catch (error) {
+            loader.style.display = 'none'; // Esconde loader
             console.error('Erro ao enviar formulário:', error);
-            alert('Erro ao enviar formulário. Tente novamente.');
+            showToast('Error sending form. Please try again.', false);
         }
     });
+
+    // Função para exibir toast
+    function showToast(message, success) {
+        const toastEl = document.getElementById('liveToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = message;
+        toastEl.classList.remove('bg-primary', 'bg-danger', 'bg-success');
+        toastEl.classList.add(success ? 'bg-success' : 'bg-danger');
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+    }
 });
                                 
