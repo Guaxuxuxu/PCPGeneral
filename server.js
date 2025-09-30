@@ -35,9 +35,18 @@ const initDb = async () => {
       email TEXT,
       telefone TEXT,
       servico TEXT,
-      data TEXT
+      data TEXT,
+      created_at TEXT
     )
   `);
+
+  // Adiciona coluna 'created_at' se não existir
+  const pragma = await db.all(`PRAGMA table_info(agendamentos)`);
+  const hasCreatedAt = pragma.some(col => col.name === 'created_at');
+  if (!hasCreatedAt) {
+    await db.run(`ALTER TABLE agendamentos ADD COLUMN created_at TEXT`);
+    console.log("Coluna 'created_at' adicionada à tabela agendamentos.");
+  }
 };
 await initDb();
 
@@ -49,9 +58,10 @@ app.post('/send', async (req, res) => {
     const db = await dbPromise;
 
     // Salvar no banco
+    const createdAt = new Date().toISOString();
     await db.run(
-      `INSERT INTO agendamentos (nome,email,telefone,servico,data) VALUES (?,?,?,?,?)`,
-      [name, email, phone, service, schedule]
+      `INSERT INTO agendamentos (nome,email,telefone,servico,data,created_at) VALUES (?,?,?,?,?,?)`,
+      [name, email, phone, service, schedule, createdAt]
     );
 
     // Pegar todos os agendamentos
