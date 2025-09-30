@@ -230,6 +230,10 @@ body {
 }
 
 /* ========================= Sections & What We Do ========================= */
+
+#about {
+  text-align: justify;
+}
 .section-title {
   font-family: 'Anton', sans-serif;
   font-size: 2.2rem;

@@ -69,19 +69,31 @@ app.post('/send', async (req, res) => {
 
     // Gerar Excel
     const worksheet = XLSX.utils.json_to_sheet(agendamentos);
+
+    // Definir largura das colunas
+    worksheet['!cols'] = [
+      { wch: 5 },   // id
+      { wch: 25 },  // nome
+      { wch: 30 },  // email
+      { wch: 18 },  // telefone
+      { wch: 25 },  // servico
+      { wch: 15 },  // data
+      { wch: 25 }   // created_at
+    ];
+
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Agendamentos');
     const filename = 'agendamentos.xlsx';
     const filepath = path.join(__dirname, filename);
     XLSX.writeFile(workbook, filepath);
 
-   // Configurar Nodemailer com Gmail
+    // Configurar Nodemailer com Gmail
     const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.USER,
-                pass: process.env.GOOGLE_PASS
-                }
+      service: 'gmail',
+      auth: {
+        user: process.env.USER,
+        pass: process.env.GOOGLE_PASS
+      }
     });
 
     const mailOptions = {
@@ -99,10 +111,10 @@ app.post('/send', async (req, res) => {
     // Remover Excel temporário
     fs.unlinkSync(process.env.XLSX_FILE_PATH);
 
-  res.json({ success: true, message: 'Email sent successfully with all appointments!' });
+    res.json({ success: true, message: 'Email sent successfully with all appointments!' });
   } catch (err) {
     console.error(err);
-  res.status(500).json({ success: false, message: 'Error sending email: ' + err.message });
+    res.status(500).json({ success: false, message: 'Error sending email: ' + err.message });
   }
 });
 

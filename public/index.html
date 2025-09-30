@@ -6,7 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PCP General</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="icon" href="imgs/favicon.ico" type="image/x-icon">  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Favicon padrão -->
+  <link rel="icon" type="image/x-icon" href="imgs/favicon-v2.ico">
+
+  <!-- Ícones para navegadores modernos -->
+  <link rel="icon" type="image/png" sizes="16x16" href="imgs/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="imgs/favicon-32x32.png">
+
+  <!-- Ícone para iPhone/iPad (Safari) -->
+  <link rel="apple-touch-icon" href="imgs/apple-touch-icon.png">
+
+  <!-- Ícones para Android (quando o site é adicionado à tela inicial) -->
+  <link rel="icon" type="image/png" sizes="192x192" href="imgs/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="imgs/android-chrome-512x512.png">
+
+  <!-- Tema da barra do navegador (opcional) -->
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="style/index.css">
@@ -27,8 +44,8 @@
   <section class="hero">
     <div class="overlay"></div>
     <div class="hero-content">
-      <h1>The best local <span>General Contractor.</span></h1>
-      <p>New Home Construction, Kitchen & Bathroom Renovations, ADUs, Demolition and more</p>
+      <h1><span>PCP General Contractor:</span> Your 5.0-Star Partner in Kirkland & surrounding areas</h1>
+      <p>New Home Construction, ADUs, and Residential Renovations Delivered with Proven Quality.</p>
     </div>
     <div class="contact-form">
       <h2>Prefer us to contact you?</h2>
@@ -55,15 +72,32 @@
       </form>
     </div>
   </section>
-  <section class="py-5 bg-light" id="about">
+  <section class="py-5 bg-white" id="about">
     <div class="container d-flex flex-column flex-md-row align-items-center gap-4">
       <div class="img-placeholder"></div>
       <div>
         <h2 class="section-title">About us</h2>
-        <p>At Generation Builders, we deliver trust and quality in every project. From new home construction to complete
-          renovations, our team is committed to turning your vision into reality.</p>
-        <p>With years of expertise, we combine strong craftsmanship and modern techniques to ensure that every build
-          stands the test of time.</p>
+        <p>
+          At <strong>PCP General Contractor</strong>, we are dedicated to turning visions into reality. Our expertise
+          covers
+          a wide range of construction and remodeling services, always focusing on quality, efficiency, and customer
+          satisfaction.
+          We combine technical knowledge with attention to detail, delivering results that not only meet expectations
+          but also exceed them.
+        </p>
+
+        <p>
+          From residential projects to commercial construction, our mission is to build with responsibility, trust, and
+          innovation.
+          We value transparency in every step of the process and treat each project as unique, ensuring that every
+          client’s dream
+          takes shape with precision and care.
+        </p>
+
+        <p>
+          Whether it’s building from the ground up, renovating, or adding new details to a property,
+          <strong>PCP General Contractor</strong> is here to make it happen.
+        </p>
       </div>
     </div>
   </section>
@@ -75,28 +109,34 @@
         <div class="grid-sizer"></div>
 
         <div class="grid-item">
-          <img src="imgs/background.jpg" alt="Descrição da Imagem 1">
+          <img src="imgs/mural1.png" alt="Descrição da Imagem 1">
         </div>
         <div class="grid-item">
-          <img src="imgs/banheiro1.jpg" alt="Descrição da Imagem 2">
+          <img src="imgs/mural2.jpg" alt="Descrição da Imagem 2">
         </div>
         <div class="grid-item">
-          <img src="imgs/banheiro3.jpg" alt="Descrição da Imagem 3">
+          <img src="imgs/mural3.jpg" alt="Descrição da Imagem 3">
         </div>
         <div class="grid-item">
-          <img src="imgs/banheiro5.jpg" alt="Descrição da Imagem 4">
+          <img src="imgs/mural4.jpg" alt="Descrição da Imagem 4">
         </div>
         <div class="grid-item">
-          <img src="imgs/banheiro4.jpg" alt="Descrição da Imagem 4">
+          <img src="imgs/mural5.jpg" alt="Descrição da Imagem 5">
         </div>
         <div class="grid-item">
-          <img src="imgs/banheiro6.jpg" alt="Descrição da Imagem 4">
+          <img src="imgs/mural6.jpg" alt="Descrição da Imagem 6">
         </div>
         <div class="grid-item">
-          <img src="imgs/banheiro7.jpg" alt="Descrição da Imagem 4">
+          <img src="imgs/mural7.jpg" alt="Descrição da Imagem 7">
         </div>
         <div class="grid-item">
-          <img src="imgs/banheiro 8.jpg" alt="Descrição da Imagem 4">
+          <img src="imgs/mural8.jpg" alt="Descrição da Imagem 8">
+        </div>
+        <div class="grid-item">
+          <img src="imgs/mural9.jpg" alt="Descrição da Imagem 9">
+        </div>
+        <div class="grid-item">
+          <img src="imgs/mural10.jpg" alt="Descrição da Imagem 10">
         </div>
       </div>
     </div>
@@ -266,13 +306,16 @@
       <span class="visually-hidden">Sending...</span>
     </div>
   </div>
-  <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 9999; width: 100%; max-width: 400px;">
-    <div id="liveToast" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="position-fixed top-0 start-50 translate-middle-x p-3"
+    style="z-index: 9999; width: 100%; max-width: 400px;">
+    <div id="liveToast" class="toast align-items-center text-white bg-primary border-0" role="alert"
+      aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
         <div class="toast-body" id="toastMessage">
           Mensagem
         </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
       </div>
     </div>
   </div>
