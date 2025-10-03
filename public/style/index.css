@@ -438,6 +438,7 @@ div[data-elfsight-app-lazy]>div>a[href*="elfsight"] {
    -------------------------------------------------------------------------- */
 @media (max-width: 992px) {
   header {
+    position: relative;
     padding: 15px 20px;
   }
 
@@ -479,6 +480,7 @@ div[data-elfsight-app-lazy]>div>a[href*="elfsight"] {
   }
 
   header {
+    position: relative;
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem 1rem;
@@ -536,6 +538,11 @@ div[data-elfsight-app-lazy]>div>a[href*="elfsight"] {
    SMALL MOBILE DEVICES (<= 576px)
    -------------------------------------------------------------------------- */
 @media (max-width: 576px) {
+  header {
+    position: relative;
+
+  }
+
   .hero-content h1 {
     font-size: 1.8rem;
   }
