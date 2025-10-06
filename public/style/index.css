@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PCP GENERAL CONTRACTOR - REFACTORED STYLESHEET
+   PCP GENERAL CONTRACTOR - REFACTORED & ENHANCED STYLESHEET
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -25,6 +25,11 @@
   /* Spacing & Borders */
   --section-padding: 5rem 0;
   --border-radius: 10px;
+}
+
+/* MELHORIA: Rolagem suave da página */
+html {
+  scroll-behavior: smooth;
 }
 
 * {
@@ -69,21 +74,29 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+  /* MELHORIA: Sombra para dar profundidade */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 header .logo {
   text-decoration: none;
 }
 
-header .logo .logo-text {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: var(--color-white);
+/* Lógica do logo Desktop vs Mobile */
+.logo-mobile {
+  display: none;
 }
 
-/* Imagem da logo no header fica escondida por padrão */
-header .logo .logo-image {
-  display: none;
+.logo-desktop {
+  display: block;
+  height: 50px;
+  border-radius: 12px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-desktop:hover {
+  transform: scale(1.05);
 }
 
 header .nav a {
@@ -93,10 +106,28 @@ header .nav a {
   font-family: var(--font-heading);
   letter-spacing: 1px;
   transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+/* MELHORIA: Efeito de sublinhado animado nos links do menu */
+header .nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-accent-light);
+  transition: width 0.3s ease;
 }
 
 header .nav a:hover {
   color: var(--color-accent-light);
+}
+
+header .nav a:hover::after {
+  width: 100%;
 }
 
 .header-actions {
@@ -121,12 +152,14 @@ header .nav a:hover {
   border-radius: 8px;
   font-size: 18px;
   text-decoration: none;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .social-btn:hover {
   background-color: var(--color-accent);
   border-color: var(--color-accent-light);
+  /* MELHORIA: Efeito de "pular" */
+  transform: translateY(-3px);
 }
 
 .btn-link {
@@ -136,11 +169,15 @@ header .nav a:hover {
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-link:hover {
   background: var(--color-primary-medium);
+  /* MELHORIA: Efeito de escala e sombra */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* --------------------------------------------------------------------------
@@ -180,6 +217,8 @@ header .nav a:hover {
   font-family: var(--font-heading);
   font-size: 2.8rem;
   color: var(--color-text-light);
+  /* MELHORIA: Sombra no texto para melhor legibilidade */
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .hero-content h1 span {
@@ -189,6 +228,7 @@ header .nav a:hover {
 .hero-content p {
   margin-top: 15px;
   font-size: 1.2rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .contact-form {
@@ -200,6 +240,8 @@ header .nav a:hover {
   position: relative;
   border: 2px solid var(--color-accent);
   z-index: 2;
+  /* MELHORIA: Sombra mais acentuada */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .contact-form h2 {
@@ -226,6 +268,15 @@ header .nav a:hover {
   border-radius: 6px;
   background: var(--color-white);
   color: var(--color-primary-medium);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* MELHORIA: Efeito de foco nos campos do formulário */
+.contact-form input:focus,
+.contact-form select:focus {
+  outline: none;
+  border-color: var(--color-accent-light);
+  box-shadow: 0 0 0 3px rgba(78, 61, 138, 0.25);
 }
 
 .contact-form input::placeholder {
@@ -240,11 +291,12 @@ header .nav a:hover {
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .contact-form button:hover {
   background: var(--color-primary-medium);
+  transform: scale(1.03);
 }
 
 /* --------------------------------------------------------------------------
@@ -275,14 +327,20 @@ header .nav a:hover {
 }
 
 .service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(47, 40, 99, 0.1);
+  transform: translateY(-8px);
+  /* MELHORIA: Sombra mais forte no hover */
+  box-shadow: 0 12px 24px rgba(47, 40, 99, 0.15);
 }
 
 .service-icon {
   font-size: 2.5rem;
   color: var(--color-accent);
   margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1);
 }
 
 .service-title {
@@ -314,11 +372,18 @@ header .nav a:hover {
   border-radius: 50px;
   font-weight: bold;
   border: 1px solid var(--color-accent);
+  transition: all 0.3s ease;
+}
+
+#cities .nav-pills .nav-link:hover:not(.active) {
+  background-color: #e9e6f5;
+  /* Um lilás bem claro */
 }
 
 #cities .nav-pills .nav-link.active {
   background-color: var(--color-accent);
   color: var(--color-text-light);
+  box-shadow: 0 4px 10px rgba(78, 61, 138, 0.3);
 }
 
 .city-tags {
@@ -339,6 +404,17 @@ header .nav a:hover {
   border: 1px solid var(--color-accent);
   font-weight: 500;
   color: var(--color-primary-medium);
+  transition: all 0.3s ease;
+  cursor: default;
+  /* Mudar para pointer se for clicável */
+}
+
+/* MELHORIA: Efeito hover nas tags de cidade */
+.city-tags span:hover {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* --------------------------------------------------------------------------
@@ -359,6 +435,9 @@ header .nav a:hover {
 
 .grid-item {
   margin-bottom: 16px;
+  overflow: hidden;
+  /* Necessário para o efeito de zoom */
+  border-radius: 8px;
 }
 
 .grid-item img {
@@ -366,6 +445,13 @@ header .nav a:hover {
   width: 100%;
   height: auto;
   border-radius: 8px;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* MELHORIA: Efeito de zoom e brilho na galeria */
+.grid-item:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 .grid::-webkit-scrollbar {
@@ -412,6 +498,13 @@ header .nav a:hover {
 .minimap iframe {
   border-radius: 8px;
   margin-top: 1rem;
+  filter: grayscale(80%);
+  /* MELHORIA: Mapa com estilo mais neutro */
+  transition: filter 0.3s ease;
+}
+
+.minimap iframe:hover {
+  filter: grayscale(0%);
 }
 
 .footer {
@@ -487,16 +580,15 @@ div[data-elfsight-app-lazy]>div>a[href*="elfsight"] {
     align-items: center;
   }
 
-  /* Esconde o texto e mostra a imagem da logo no celular */
-  header .logo .logo-text {
+  /* Lógica responsiva do Logo */
+  .logo-desktop {
     display: none;
   }
 
-  header .logo .logo-image {
+  .logo-mobile {
     display: block;
-    /* MUDANÇA AQUI: Aumentei o tamanho da logo no celular */
+    /* MUDANÇA: Retornando ao valor original que você tinha */
     height: 200px;
-    /* <<< Ajuste este valor se precisar */
     width: auto;
   }
 
@@ -532,6 +624,76 @@ div[data-elfsight-app-lazy]>div>a[href*="elfsight"] {
     text-align: center;
     margin-bottom: 2rem;
   }
+
+  /* Altera o alinhamento do texto justificado para a esquerda em telas pequenas, melhorando a legibilidade. */
+  #about {
+    text-align: left;
+  }
+
+  /* ==================================================
+     CORREÇÃO: SINALIZADOR DE ROLAGEM PARA GALERIA MOBILE
+     ================================================== */
+
+  /* Animação de pulsar para o ícone */
+  @keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+
+    40% {
+      transform: translateY(-8px);
+    }
+
+    60% {
+      transform: translateY(-4px);
+    }
+  }
+
+  /* Container que segura a galeria e o indicador */
+  .gallery-container {
+    position: relative;
+  }
+
+  /* [::BEFORE] O pseudo-elemento '::before' agora é SÓ a seta animada */
+  .gallery-container::before {
+    content: '▼';
+    position: absolute;
+    /* Posiciona a seta no centro horizontal e um pouco acima da base */
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: var(--color-accent);
+    z-index: 1;
+    /* Garante que a seta fique sobre o gradiente */
+
+    /* Animação de pulsar aplicada somente à seta */
+    animation: bounce 2s infinite;
+
+    pointer-events: none;
+  }
+
+  /* [::AFTER] O pseudo-elemento '::after' agora é SÓ o fundo gradiente ESTÁTICO */
+  .gallery-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    /* Altura do gradiente */
+
+    /* O gradiente que cria o efeito de 'fade' */
+    background: linear-gradient(to bottom, transparent, var(--color-light-gray) 70%);
+
+    pointer-events: none;
+    /* Impede que bloqueie cliques ou a rolagem */
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -540,7 +702,6 @@ div[data-elfsight-app-lazy]>div>a[href*="elfsight"] {
 @media (max-width: 576px) {
   header {
     position: relative;
-
   }
 
   .hero-content h1 {
